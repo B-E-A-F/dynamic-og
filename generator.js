@@ -21,7 +21,6 @@ export async function generateScoreScreenshots(baseUrl = 'http://localhost:5173'
   }
 
   await browser.close();
-  return results;
 }
 
 generateScoreScreenshots().catch((error) => {
