@@ -1,38 +1,70 @@
-# sv
+# Dynamic OG Image Playground
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+Reference-only project for generating Open Graph (OG) images programmatically across future projects.
 
-## Creating a project
+## Purpose
 
-If you're seeing this, you've probably already done this step. Congrats!
+Central scratchpad to:
 
-```bash
-# create a new project in the current directory
-npx sv create
+- Prototype OG layouts (HTML/CSS/JS)
+- Capture consistent screenshots with Playwright
+- Manually upload rendered images to a CDN
+- Reuse final image URLs in other repositories
 
-# create a new project in my-app
-npx sv create my-app
+Not intended as a publishable package or service.
+
+## How It Works
+
+1. Write a minimal HTML template (focus on body contents).
+2. Run the Playwright capture script to screenshot the rendered body.
+3. Review outputs (PNG/WebP).
+4. Manually upload chosen assets to your CDN.
+5. Reference the hosted URLs in target project meta tags.
+
+## Tech
+
+- Node.js + Playwright
+- Simple build/watch (optional)
+- No server component
+
+## Example Meta Tag (Usage in Other Projects)
+
+```html
+<meta property="og:image" content="https://cdn.example.com/og/my-latest.png" />
+<meta name="twitter:image" content="https://cdn.example.com/og/my-latest.png" />
 ```
 
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Workflow
 
 ```bash
-npm run dev
+# Install deps
+npm install
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+# Dev (adjust template, styles)
+npm run dev   # if configured (e.g. live server / build)
+
+# Generate screenshots
+npm run capture   # wraps a Playwright script
 ```
 
-## Building
+## Conventions
 
-To create a production version of your app:
+- Viewport: 1200x630 (standard OG)
+- Prefer system fonts or self-hosted for determinism
+- Avoid external network dependencies during render
 
-```bash
-npm run build
-```
+## CDN Upload
 
-You can preview the production build with `npm run preview`.
+Manually drag selected images to CDN bucket (e.g. R2, S3, Cloudflare Images) and note final public URL.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+## Notes
+
+- No automation for upload (intentional)
+- Keep repo uncluttered; prune stale outputs
+- Treat as disposable experimentation space
+
+## License
+
+Unlicensed reference sandbox (internal use).
+
+Done.
