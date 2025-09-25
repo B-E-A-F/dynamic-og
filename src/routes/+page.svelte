@@ -4,7 +4,8 @@
 	// Reactive score derived from the URL search param ?score=123
 	let score = $derived<string>(page.url.searchParams.get('score') ?? '100');
 
-	function getGradientColor(score: number): string {
+	function getGradientColor(): string {
+		const score = parseInt(page.url.searchParams.get('score') ?? '100');
 		if (typeof document === 'undefined') return '#10b981';
 
 		const getColor = (varName: string, fallback: string) => {
@@ -33,7 +34,7 @@
 	}
 </script>
 
-<div class="flex flex-col items-center justify-center">
-	<p>{score}</p>
+<div class="flex flex-col items-center justify-center h-full">
+	<span class="text-9xl" style="color: {getGradientColor()}">{score}</span>
 	<img src="Logo-light-lg.png" alt="Logo" class="h-auto" />
 </div>
