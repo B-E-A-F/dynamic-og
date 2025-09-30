@@ -35,6 +35,8 @@
 </script>
 
 <div class="flex flex-col items-center justify-center h-full">
-	<span class="text-[10rem]" style="color: {getGradientColor()}">{score}</span>
+	<span class="text-[12rem] font-semibold h-[14rem]" style="color: {getGradientColor()}"
+		>{score}</span
+	>
 	<img src="Logo-light-lg.png" alt="Logo" class="h-auto" />
 </div>
